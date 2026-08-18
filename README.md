@@ -42,10 +42,10 @@ sql-training/
 │   ├── suppliers.csv          # 仕入先メーカー (8件)
 │   ├── products.csv           # 商品データ (20件)
 │   ├── coupons.csv            # クーポン (6件)
-│   ├── orders.csv             # 注文 (30件)
-│   ├── order_items.csv        # 注文明細 (34件)
-│   ├── payments.csv           # 決済データ (30件)
-│   └── reviews.csv            # レビュー (23件)
+│   ├── orders.csv             # 注文 (380件)
+│   ├── order_items.csv        # 注文明細 (605件)
+│   ├── payments.csv           # 決済データ (380件)
+│   └── reviews.csv            # レビュー (135件)
 ├── src/
 │   ├── database.py            # SQLite接続 & セッション管理
 │   ├── models.py              # SQLAlchemy 2.0 ORMモデル定義

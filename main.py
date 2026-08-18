@@ -20,7 +20,6 @@ def main():
     seed_database()
     
     print("セットアップが正常に完了しました！")
-    print("DBeaver や VSCode SQLite Viewer などのツールで以下のファイルを開いてSQLをお試しください:")
     print(f" -> {DB_PATH}")
     print("==========================================================")
 
