@@ -4,106 +4,9 @@
 
 ---
 
-## 1. ER図 (Entity Relationship Diagram)
+## 1. テーブル一覧
 
-```mermaid
-erDiagram
-    users ||--o{ orders : "1人の会員が複数の注文を持つ"
-    users ||--o{ reviews : "1人の会員が複数のレビューを投稿する"
-    categories ||--o{ categories : "親カテゴリ - 子カテゴリ"
-    categories ||--o{ products : "1つのカテゴリに複数の商品が所属"
-    suppliers ||--o{ products : "1つの仕入先が複数の商品を供給"
-    products ||--o{ order_items : "1つの商品が複数の注文明細に含まれる"
-    products ||--o{ reviews : "1つの商品に複数のレビューがつく"
-    coupons ||--o{ orders : "1つのクーポンが複数の注文に適用される"
-    orders ||--|{ order_items : "1つの注文が1つ以上の明細を持つ"
-    orders ||--o| payments : "1つの注文に1つの決済が紐付く"
-
-    users {
-        int id PK "会員ID"
-        varchar(50) name "氏名"
-        varchar(100) email UK "メールアドレス"
-        varchar(10) gender "性別 (male/female/other)"
-        date birth_date "生年月日"
-        varchar(20) prefecture "都道府県"
-        boolean is_active "有効フラグ"
-        datetime registered_at "登録日時"
-    }
-
-    categories {
-        int id PK "カテゴリID"
-        varchar(50) name "カテゴリ名"
-        int parent_id FK "親カテゴリID (NULL許容)"
-    }
-
-    suppliers {
-        int id PK "仕入先ID"
-        varchar(100) name "仕入先・メーカー名"
-        varchar(100) contact_email "連絡先メール"
-        varchar(50) country "所在国"
-    }
-
-    products {
-        int id PK "商品ID"
-        int category_id FK "カテゴリID (NULL許容)"
-        int supplier_id FK "仕入先ID (NULL許容)"
-        varchar(100) name "商品名"
-        int price "販売価格 (税込)"
-        int cost_price "仕入原価"
-        int stock_quantity "在庫数"
-        datetime created_at "登録日時"
-    }
-
-    coupons {
-        int id PK "クーポンID"
-        varchar(20) code UK "クーポンコード"
-        int discount_amount "値引額 (NULL許容)"
-        float discount_rate "割引率 (NULL許容)"
-        int min_order_amount "適用最小金額"
-        datetime valid_from "有効開始日時"
-        datetime valid_to "有効終了日時"
-    }
-
-    orders {
-        int id PK "注文ID"
-        int user_id FK "会員ID"
-        int coupon_id FK "使用クーポンID (NULL許容)"
-        datetime order_date "注文日時"
-        varchar(20) status "注文ステータス"
-        int shipping_fee "送料"
-        int total_amount "注文合計金額 (税込)"
-    }
-
-    order_items {
-        int id PK "明細ID"
-        int order_id FK "注文ID"
-        int product_id FK "商品ID"
-        int quantity "購入数量"
-        int unit_price "購入時単価"
-    }
-
-    payments {
-        int id PK "決済ID"
-        int order_id FK,UK "注文ID"
-        varchar(30) payment_method "決済手段"
-        int amount "決済金額"
-        varchar(20) payment_status "決済ステータス"
-        datetime paid_at "決済完了日時 (NULL許容)"
-    }
-
-    reviews {
-        int id PK "レビューID"
-        int user_id FK "会員ID"
-        int product_id FK "商品ID"
-        int rating "評価 (1〜5)"
-        text comment "レビュー本文 (NULL許容)"
-        datetime created_at "投稿日時"
-    }
-```
-
----
-
-## 2. テーブル一覧
+> ER図は [er_diagram.drawio](er_diagram.drawio) を参照してください。
 
 | テーブル名 | 論理名 | 説明 | 主なSQL学習用途 |
 | :--- | :--- | :--- | :--- |
@@ -119,7 +22,7 @@ erDiagram
 
 ---
 
-## 3. テーブル詳細定義
+## 2. テーブル詳細定義
 
 ### 1. `users` (会員テーブル)
 会員（顧客）の情報を管理します。一部の会員は注文履歴を持たない状態で用意されています。
