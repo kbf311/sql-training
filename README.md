@@ -35,7 +35,9 @@ python main.py
 sql-training/
 ├── docs/
 │   ├── table_definitions.md   # テーブル定義書（ER図・カラム定義・制約）
-│   └── practice_queries.md    # 練習用SQLクエリ集（JOIN・GROUP BY・HAVING等）
+│   ├── practice_queries.md    # 練習用SQLクエリ集【出題編】（JOIN・GROUP BY・HAVING等）
+│   └── solutions/
+│       └── practice_queries_answers.md # 練習用SQLクエリ集【回答・解説編】
 ├── seeds/                     # 初期登録データ (CSV)
 │   ├── users.csv              # 会員データ (25件)
 │   ├── categories.csv         # 商品カテゴリ (12件)
@@ -96,6 +98,9 @@ sqlite3 ecommerce.db
 
 ---
 
-## 💡 SQLクエリ集
+## 💡 SQL練習問題 & 回答
 
-すぐに試せるSQLクエリ集（INNER/LEFT/RIGHT/FULL JOIN, GROUP BY, HAVING, ウィンドウ関数）を [docs/practice_queries.md](docs/practice_queries.md) にまとめています。
+- **問題集（出題編）**: [docs/practice_queries.md](docs/practice_queries.md)
+  - お題、対象テーブル、ヒントを掲載しています。まずは自力でクエリを組み立ててみましょう。
+- **解答・解説編**: [docs/solutions/practice_queries_answers.md](docs/solutions/practice_queries_answers.md)
+  - 模範解答SQLと詳細な解説を掲載しています。
